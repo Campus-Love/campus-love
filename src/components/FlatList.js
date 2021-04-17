@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet } from "react-native"
+import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet , SafeAreaView} from "react-native"
 import campusers from "../Constants/fakedata";
 import ButtonComponent from "./Button";
 import {theme} from "../theme"
@@ -8,7 +8,7 @@ import {theme} from "../theme"
 const CampuserData = ()=>{
 
     const Item = ({item})=>(
-        <TouchableOpacity style = {styles.containerCardStyle} activeOpacity={0.3}>
+        <SafeAreaView style = {styles.containerCardStyle}>
             <TouchableOpacity activeOpacity = {0.8} style = {styles.itemStyle}>
             <Image
             style = {styles.imageStyle}
@@ -24,16 +24,26 @@ const CampuserData = ()=>{
             
 
             </TouchableOpacity>
-           <View>
-
+           <View style = {styles.homeButtonStyle}>
+               <View style ={styles.homeButtonSend}>
                <ButtonComponent 
                mode = "contained" 
-               text='Relation Request' icon = "send"
+               text='RR' icon = "send"
                color = {`${theme.colors.primary}`}
                />
+               </View>
+               <View style = {styles.homeButtonMore}>
+               <ButtonComponent 
+               mode = "contained" 
+               text='More' icon = "more"
+               color = {`${theme.colors.primary}`}
+               
+               />
+               </View>
+               
             </View>
 
-        </TouchableOpacity>
+        </SafeAreaView>
     )
 
     const renderItem = ({item})=>(
@@ -65,18 +75,20 @@ const styles = StyleSheet.create({
         borderRadius:12,
         padding:20,
         margin:20,
+        paddingRight:20
     },
     itemStyle:{
         flexDirection:"row",
         flex:1,
-        marginBottom:6 
+        marginBottom:6,
+        marginLeft:-10 
        
     },
     imageStyle:{
-        width:80,
-        height:80,
-        marginLeft:-10,
-        marginRight:20,
+        width:100,
+        height:100,
+        marginLeft:-5,
+        marginRight:10,
         borderRadius:50
     },
     nameStyle:{
@@ -84,6 +96,18 @@ const styles = StyleSheet.create({
         fontWeight:"700",
 
     },
+    homeButtonStyle:{
+        flexDirection:"row"
+    },
+    homeButtonSend:{
+        width:"50%",
+        flex:0.5,
+        marginRight:15
+    },
+    homeButtonMore:{
+        width:"50%",
+        flex:0.5
+    }
 })
 
 export default CampuserData
