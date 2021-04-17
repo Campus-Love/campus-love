@@ -3,21 +3,32 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './screens/HomeScreen/Home';
+import LandingScreen from './screens/HomeScreen';
+import AppBar from './components/AppBar';
+
 
 const Stack = createStackNavigator();
+
+const Checker = ()=>{
+  return (
+    <View><Text>Checked</Text></View>
+  )
+}
 const Navigation = ()=>{
     return (
         <NavigationContainer>
         <Stack.Navigator
+        initialRouteName = "Home"
          screenOptions = {
            {
-             headerShown:false
+             
+             header:(props)=>(<AppBar {...props}/>)
            }
          }
          
         >
-           <Stack.Screen name="Home" component = {Home}/>
+           <Stack.Screen name="Home" component = {LandingScreen}/>
+           <Stack.Screen name="Checker" component ={Checker}/>
         </Stack.Navigator>
     
       </NavigationContainer>
