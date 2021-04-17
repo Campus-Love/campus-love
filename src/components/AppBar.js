@@ -2,7 +2,7 @@ import React from "react";
 import { Appbar,Badge } from 'react-native-paper';
 import { theme } from "../theme";
 import {View, StyleSheet, Platform} from "react-native"
-const AppBar = ({navigation , previous})=>{
+const AppBar = ({navigation , previous, title, showBadge})=>{
     const unread = 4;
     const MORE_ICON = Platform.OS === 'ios' || Platform.OS === "web" ?
      'dots-horizontal' : 'dots-vertical';
@@ -12,25 +12,33 @@ const AppBar = ({navigation , previous})=>{
          style = {styles.appHeaderStyle} >
      {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
      
-        <Appbar.Content title="Campuslove" 
+        <Appbar.Content 
+        title={title} 
+        titleStyle = {styles.titleStyle}
          />
-       <View>
-          <Badge
-            visible={unread && unread > 0}
-            size={17}
-            style={styles.badgeStyle}
-          >
-            {unread}
-          </Badge>
-          <Appbar.Action
-          color ="#fff"
-            icon={'account-supervisor-circle'}
-            accessibilityLabel="TagChat"
-            onPress={() => {}}
-            
-          />
-   </View>
-   <View>
+         {
+           showBadge&&
+           <View>
+           <Badge
+             visible={unread && unread > 0}
+             size={17}
+             style={styles.badgeStyle}
+           >
+             {unread}
+           </Badge>
+           <Appbar.Action
+           color ="#fff"
+             icon={'account-supervisor-circle'}
+             accessibilityLabel="TagChat"
+             onPress={() => {}}
+             
+           />
+    </View>
+         }
+
+         {
+           showBadge&&
+           <View>
           <Badge
             visible={unread && unread > 0}
             size={16}
@@ -46,6 +54,9 @@ const AppBar = ({navigation , previous})=>{
           />
 
    </View>
+         }
+      
+   
    <Appbar.Action
             color ="#fff"
             icon={MORE_ICON}
@@ -60,7 +71,10 @@ const AppBar = ({navigation , previous})=>{
 }
 
 const styles = StyleSheet.create({
-    appHeaderStyle:{backgroundColor:`${theme.colors.primary}`},
+    appHeaderStyle:{
+      backgroundColor:`${theme.colors.primary}`,
+      width:"100%"
+    },
     badgeStyle:{
         position: 'absolute', 
         top: 5, right: 5 ,
@@ -69,6 +83,9 @@ const styles = StyleSheet.create({
        fontWeight:"700",
        fontSize:10
 
-    }
+    },
+    titleStyle:{
+      marginTop:-10
+    },
 })
 export default AppBar

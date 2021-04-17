@@ -3,20 +3,19 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { EvilIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme"
 import Home from './home';
+import {Avatar} from "react-native-paper"
 
 
 //create tabs
 const Tab  = createBottomTabNavigator()
 
 //Default tab
-const DefaultTab = ()=>{
-    return (<View><Text>Hello </Text></View>)
-}
-const LandingScreen = () => {
+const DefaultTab = ()=>(<View></View>)
+
+const LandingScreen = ({navigation}) => {
     return (
         <Tab.Navigator
       initialRouteName="Home"
@@ -65,12 +64,20 @@ const LandingScreen = () => {
       />
 
 <Tab.Screen
-        name="Settings"
+        name="account"
         component={DefaultTab}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: 'account',
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="setting" size={24} color={color} />
+            <TouchableOpacity activeOpacity = {0.2}
+            onPress = {()=>navigation.navigate("MyAccount")}
+            >
+                 <Avatar.Image size={24} source={{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}} 
+             color = {color}
+             size = {24}
+           />
+            </TouchableOpacity>
+           
           ),
         
         }}
