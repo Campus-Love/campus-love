@@ -14,21 +14,27 @@ const Checker = ()=>{
     <View><Text>Checked</Text></View>
   )
 }
+
+
 const Navigation = ()=>{
     return (
         <NavigationContainer>
         <Stack.Navigator
         initialRouteName = "Home"
-         screenOptions = {
-           {
-             
-             header:(props)=>(<AppBar {...props}/>)
-           }
-         }
-         
+        headerMode ="screen"       
         >
-           <Stack.Screen name="Home" component = {LandingScreen}/>
-           <Stack.Screen name="Checker" component ={Checker}/>
+           <Stack.Screen name="Home" 
+           component = {LandingScreen}
+           options = {{
+             title:"Account",
+             header:(props)=>(<AppBar {...props} title = "CampusLove" showBadge/>),
+           }}
+           />
+           <Stack.Screen name="MyAccount"
+           options = {{
+             header:(props)=>(<AppBar {...props} title="My Account"/>)
+           }}
+            component ={Checker}/>
         </Stack.Navigator>
     
       </NavigationContainer>
