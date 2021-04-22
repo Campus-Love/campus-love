@@ -1,7 +1,8 @@
 import React from "react";
 import { Appbar,Badge } from 'react-native-paper';
 import { theme } from "../theme";
-import {View, StyleSheet, Platform} from "react-native"
+import {View, StyleSheet, Platform} from "react-native";
+
 const AppBar = ({navigation , previous, title, showBadge})=>{
     const unread = 4;
     const MORE_ICON = Platform.OS === 'ios' || Platform.OS === "web" ?
@@ -24,7 +25,7 @@ const AppBar = ({navigation , previous, title, showBadge})=>{
              size={17}
              style={styles.badgeStyle}
            >
-             {unread}
+             {`+${unread}`}
            </Badge>
            <Appbar.Action
            color ="#fff"
@@ -44,7 +45,7 @@ const AppBar = ({navigation , previous, title, showBadge})=>{
             size={16}
             style={styles.badgeStyle}
           >
-            {unread}
+            {`+${unread}`}
           </Badge>
           <Appbar.Action
             color ="#fff"
@@ -81,7 +82,8 @@ const styles = StyleSheet.create({
       color:`${theme.colors.primary}`,
        backgroundColor:"#fff",
        fontWeight:"700",
-       fontSize:10
+       fontSize:10,
+       zIndex:20
 
     },
     titleStyle:{

@@ -1,8 +1,8 @@
 import React from "react";
-import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet , SafeAreaView} from "react-native"
+import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet , SafeAreaView, Platform} from "react-native"
 import campusers from "../Constants/fakedata";
 import ButtonComponent from "./Button";
-import {theme} from "../theme"
+import {theme} from "../theme";
 
 
 const CampuserData = ()=>{
@@ -28,7 +28,8 @@ const CampuserData = ()=>{
                <View style ={styles.homeButtonSend}>
                <ButtonComponent 
                mode = "contained" 
-               text='RR' icon = "send"
+               uppercase = {false}
+               text='date' icon = "send"
                color = {`${theme.colors.primary}`}
                />
                </View>
@@ -36,6 +37,7 @@ const CampuserData = ()=>{
                <ButtonComponent 
                mode = "contained" 
                text='More' icon = "more"
+               uppercase = {false}
                color = {`${theme.colors.primary}`}
                
                />
@@ -60,6 +62,7 @@ const CampuserData = ()=>{
      data = {campusers}
      renderItem = {renderItem}
      keyExtractor = {(campuser)=>campuser.id}
+
      
      />
     )
@@ -73,16 +76,17 @@ const styles = StyleSheet.create({
     containerCardStyle:{
         backgroundColor:"rgba(255, 255, 255, 0.9)",
         borderRadius:12,
-        padding:20,
         margin:20,
+        paddingLeft:Platform.OS === "web"?30:20,
+        paddingTop:Platform.OS === "web"?20:20,
+        paddingBottom:Platform.OS ==="web"?20:20,
         paddingRight:20
     },
     itemStyle:{
         flexDirection:"row",
         flex:1,
         marginBottom:6,
-        marginLeft:-10 
-       
+        marginLeft:0
     },
     imageStyle:{
         width:100,
