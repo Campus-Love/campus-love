@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './screens/HomeScreen';
 import AppBar from './components/AppBar';
-import ProfileScreen from "./screens/ProfileScreen"
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 
 
 const Stack = createStackNavigator();
