@@ -6,7 +6,7 @@ import { EvilIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme";
 import Home from "./Home";
-import {Avatar} from "react-native-paper"
+import {Avatar} from "react-native-paper";
 
 
 //create tabs
