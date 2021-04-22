@@ -5,19 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './screens/HomeScreen';
 import AppBar from './components/AppBar';
-import ProfileScreen from "./screens/ProfileScreen";
-import ImagePickerExample from "./components/imagepicker"
-
-{
-  /*
-     <Stack.Screen name="Image"
-           options = {{
-             header:(props)=>(<AppBar {...props} title="Image"/>)
-           }}
-            component ={TakeImage}/>
-            import TakeImage from './components/camera';
-   */
-}
+import ProfileScreen from "./screens/ProfileScreen"
 
 
 const Stack = createStackNavigator();
@@ -48,10 +36,8 @@ const Navigation = ()=>{
              header:(props)=>(<AppBar {...props} title="Profile"/>)
            }}
             component ={ProfileScreen}/>
-
-                     
         </Stack.Navigator>
-        
+    
       </NavigationContainer>
 
     )

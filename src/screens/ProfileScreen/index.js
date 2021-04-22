@@ -5,8 +5,43 @@ import {theme} from "../../theme";
 import {profileData} from "../../Constants/profiledata";
 import {Headline, Divider, Text} from "react-native-paper"
 import ProfileFlatList from "../../components/profileFlatList";
+import PickImagez from "../../components/camera";
+import * as ImagePicker from 'expo-image-picker';
 
-const ProfileScreen = ({navigation})=>{
+
+
+const ProfileScreen = ()=>{
+
+    const accessCamera = ()=>{
+    const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+}
 
     return(
      <ScrollView style = {styles.containerStyle}>
@@ -17,7 +52,7 @@ const ProfileScreen = ({navigation})=>{
              />
          </View>
          <TouchableOpacity activeOpacity = {0.4} 
-         onPress = {()=>navigation.navigate("Picker")}
+         
          style = {styles.profileCamera}>
            <Entypo name="camera" size={24}
             color={'#fff'}
