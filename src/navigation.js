@@ -32,7 +32,7 @@ const Navigation = ()=>{
            />
            <Stack.Screen name="MyAccount"
            options = {{
-             header:(props)=>(<AppBar {...props} title="My Account"/>)
+             header:(props)=>(<AppBar {...props} title="Profile"/>)
            }}
             component ={Checker}/>
         </Stack.Navigator>

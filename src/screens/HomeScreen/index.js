@@ -4,8 +4,8 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { EvilIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import {theme} from "../../theme"
-import Home from './home';
+import {theme} from "../../theme";
+import Home from "./Home";
 import {Avatar} from "react-native-paper"
 
 
