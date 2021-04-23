@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './screens/HomeScreen';
 import AppBar from './components/AppBar';
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 
 
 const Stack = createStackNavigator();
@@ -30,11 +31,11 @@ const Navigation = ()=>{
              header:(props)=>(<AppBar {...props} title = "CampusLove" showBadge/>),
            }}
            />
-           <Stack.Screen name="MyAccount"
+           <Stack.Screen name="Profile"
            options = {{
              header:(props)=>(<AppBar {...props} title="Profile"/>)
            }}
-            component ={Checker}/>
+            component ={ProfileScreen}/>
         </Stack.Navigator>
     
       </NavigationContainer>

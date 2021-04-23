@@ -64,13 +64,13 @@ const LandingScreen = ({navigation}) => {
       />
 
 <Tab.Screen
-        name="account"
+        name="Profile"
         component={DefaultTab}
         options={{
-          tabBarLabel: 'account',
+          tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <TouchableOpacity activeOpacity = {0.2}
-            onPress = {()=>navigation.navigate("MyAccount")}
+            onPress = {()=>navigation.navigate("Profile")}
             >
                  <Avatar.Image size={24} source={{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}} 
              color = {color}
