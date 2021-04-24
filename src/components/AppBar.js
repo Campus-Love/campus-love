@@ -3,7 +3,7 @@ import { Appbar,Badge } from 'react-native-paper';
 import { theme } from "../theme";
 import {View, StyleSheet, Platform} from "react-native";
 
-const AppBar = ({navigation , previous, title, showBadge})=>{
+const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
     const unread = 4;
     const MORE_ICON = Platform.OS === 'ios' || Platform.OS === "web" ?
      'dots-horizontal' : 'dots-vertical';
@@ -11,7 +11,10 @@ const AppBar = ({navigation , previous, title, showBadge})=>{
         <Appbar.Header
          dark = {true}
          style = {styles.appHeaderStyle} >
-     {previous ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
+     {previous ? 
+
+      <Appbar.BackAction onPress={navigation.goBack} /> 
+     : null}
      
         <Appbar.Content 
         title={title} 
