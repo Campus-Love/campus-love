@@ -15,10 +15,13 @@ const ProfileScreen = ({navigation})=>{
     }
     const pickImage = ()=>{
       setModalVisible(!modalVisible)
-      navigation.navigate("Photos", {
+      navigation.navigate("Photos",
+       {
         screen:"Gallery",
-        initial:false
-      }, 
+        initial:false,
+        params:{gallery:"Gallery"}
+      },
+
 
       )
     }
@@ -42,7 +45,8 @@ const ProfileScreen = ({navigation})=>{
                  <View style={styles.modalView}>
 
                      <View style= {styles.modalContent}>
-                         <TouchableHighlight
+                         <TouchableOpacity
+                          activeOpacity = {0.2}
                           onPress={pickImage}
                          >
                              <View style = {{color:theme.colors.text, marginRight:20}}> 
@@ -53,20 +57,22 @@ const ProfileScreen = ({navigation})=>{
                              </View>
                             
                             
-                         </TouchableHighlight>
-                         <TouchableHighlight
+                         </TouchableOpacity>
+                         <TouchableOpacity
+                          activeOpacity = {0.2}
                            onPress={showCamera}>
                             <View style = {{color:theme.colors.text, marginLeft:20}}>
                                <Entypo size={30} name="camera" color="#FFF"/>
                                <Text style={{color:theme.colors.text}}>Camera</Text>
                             </View>
                             
-                         </TouchableHighlight>
+                         </TouchableOpacity>
 
                      </View>
 
        
                    <TouchableHighlight
+                   underlayColor = "#fff"
                      style={{ ...styles.openButton, backgroundColor: 'white', width:"100%", marginTop:10 }}
                      onPress={() => {
                        setModalVisible(!modalVisible);

@@ -39,7 +39,7 @@ const Navigation = () => {
           component={ProfileScreen} />
         <Stack.Screen name="Photos"
           options={{
-            header: (props) => (<AppBar {...props} title="Picture" />)
+            headerShown:false
           }}
           component={Photos} />
       </Stack.Navigator>
