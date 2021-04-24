@@ -7,6 +7,9 @@ import LandingScreen from './screens/HomeScreen';
 import AppBar from './components/AppBar';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import Photos from './screens/Photos/photos';
+import Login from "./screens/AuthScreens/Login";
+import AuthBar from "./components/AuthBar";
+import {theme} from "./theme"
 
 
 const Stack = createStackNavigator();
@@ -22,9 +25,22 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Home"
+        initialRouteName="Login"
         headerMode="screen"
       >
+        <Stack.Screen
+        name="Login"
+         component ={Login}
+         options = {{
+           header:()=>(<AuthBar
+            title={'Login'}
+            titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf:"center" }}
+            headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
+            back
+          />)
+
+         }}
+        />
         <Stack.Screen name="Home"
           component={LandingScreen}
           options={{
