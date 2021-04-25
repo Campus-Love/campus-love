@@ -3,61 +3,58 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./Login";
 import RegisterWithPhoneNumber from "./RegisterWithPhoneNumber";
 import AuthBar from "../../components/AuthBar"
-import {theme} from "../../theme"
+import { theme } from "../../theme"
 const Stack = createStackNavigator();
-const AuthScreen = ({params:{screen}})=>{
+const AuthScreen = () => {
 
-    const ScreensToRender = [
-        {
-            name:"Login",
-            screen:Login
+  const ScreensToRender = [
+    {
+      name: "Login",
+      screen: Login
 
 
     },
     {
-        name:"Phone",
-        screen:RegisterWithPhoneNumber
+      name: "Phone",
+      screen: RegisterWithPhoneNumber
     }
-]
-    
-    return(
+  ]
 
-            <Stack.Navigator
-            initialRouteName="Login"
-            headerMode="screen"
-            >
-                <Stack.Screen
+  return (
+
+    <Stack.Navigator
+      initialRouteName="Login"
+      headerMode="screen"
+    >
+      <Stack.Screen
         name="Login"
-         component ={Login}
-         options = {{
-           header:()=>(<AuthBar
+        component={Login}
+        options={{
+          header: () => (<AuthBar
             title={'Login'}
-            titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf:"center" }}
+            titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf: "center" }}
             headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
-            
-          />)
 
-         }}
-        />
-                <Stack.Screen
-        name="SignUp"
-        component = {RegisterWithPhoneNumber}
-        options = {{
-          header:()=>(<AuthBar
-            title={'Register'}
-            titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf:"center" }}
-            headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
-            back
-            
           />)
-           
 
         }}
-        />
-                
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={RegisterWithPhoneNumber}
+        options={{
+          header: () => (<AuthBar
+            title={'Register'}
+            titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf: "center" }}
+            headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
+          />)
 
-            </Stack.Navigator>
-    
-    )
+
+        }}
+      />
+
+    </Stack.Navigator>
+
+  )
 }
 export default AuthScreen;

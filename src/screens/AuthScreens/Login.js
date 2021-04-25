@@ -26,6 +26,15 @@ const Login = ({
   const [value, setValue] = useState('');
   const [formattedValue, setFormattedValue] = useState('');
   const phoneInput = useRef(null);
+
+  const moveToRegister = ()=>{
+    navigation.navigate("Auth",
+    {
+      screen:"SignUp",
+      initail:false
+  }
+    )
+  }
   return (
     <>
       <KeyboardAvoidingView
@@ -94,7 +103,7 @@ const Login = ({
               disabled={handleDisabled}
               onPress={()=>navigation.navigate("Home")}
             />
-            <TouchableOpacity>
+            <TouchableOpacity onPress = {moveToRegister} activeOpacity={0.4}>
               <Text
                 style={{ color: 'black', textAlign: 'center', paddingTop: 40 }}
               >

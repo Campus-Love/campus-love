@@ -10,11 +10,10 @@ import {
 import { HelperText, Subheading, TextInput } from 'react-native-paper';
 import { theme } from '../../theme';
 import ReusableButton from '../../components/authButton';
-import AuthBar from '../../components/AuthBar';
 import PhoneInputComponent from "../../components/PhoneInput/PhoneInput";
 import {numberError} from "../../helpers"
 
-const SignUp = ({
+const RegisterWithPhoneNumber = ({
   handleChangeFirstName,
   handleChangeLastName,
   handleChangeEmail,
@@ -28,10 +27,19 @@ const SignUp = ({
   passwordError,
   handleLoader,
   handleDisabled,
+  navigation
 }) => {
     const [value, setValue] = useState('');
     const [formattedValue, setFormattedValue] = useState('');
     const phoneInput = useRef(null);
+
+    const moveToLogin = ()=>{
+      navigation.navigate("Auth",
+    {
+      screen:"Login"
+  }
+    )
+    }
 
   return (
     <>
@@ -98,26 +106,30 @@ const SignUp = ({
           >
             <ReusableButton
               title={'register'}
-              buttonStyle={{ padding: 10, alignSelf: 'center', width: '100%' , backgroundColor:theme.colors.primary}}
+              buttonStyle={{ padding: 5, alignSelf: 'center', width: '100%' , backgroundColor:theme.colors.primary, marginTop:-10}}
               handleLoader={handleLoader}
               disabled={handleDisabled}
               onPress={handleSubmit}
             />
-            <TouchableOpacity>
+            <TouchableOpacity  onPress ={moveToLogin} style={{marginTop:30}}>
               <Text style={{ color: 'black', textAlign: 'center', top: 13 }}>
                 Already have an account?{' '}
+                <TouchableOpacity onPress={moveToLogin} >
                 <Text
-                  style={{ fontWeight: 'bold', fontSize: 17, color: 'blue' }}
+                  style={{ fontWeight: 'bold', fontSize: 17, color: 'blue' , marginBottom:-5}}
                 >
                   Login{' '}
                 </Text>
+                  
+                </TouchableOpacity>
+                
               </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
     </>
-  );
+  );s
 };
 
-export default SignUp;
+export default RegisterWithPhoneNumber;
