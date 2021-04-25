@@ -18,7 +18,7 @@ const AuthBar = ({
   } else {
     return (
       <Appbar.Header style={headerStyles}>
-        {previous? (
+        {back===true? (
           <Appbar.BackAction onPress={() => navigation.goBack} />
         ) : null}
         <Appbar.Content title={title} titleStyle={titleStyle} />

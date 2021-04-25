@@ -10,6 +10,8 @@ import Photos from './screens/Photos/photos';
 import Login from "./screens/AuthScreens/Login";
 import AuthBar from "./components/AuthBar";
 import {theme} from "./theme"
+import SignUp from './screens/AuthScreens/RegisterWithPhoneNumber';
+import AuthScreen from "./screens/AuthScreens/Auth"
 
 
 const Stack = createStackNavigator();
@@ -25,9 +27,23 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="SignUp"
         headerMode="screen"
       >
+        <Stack.Screen
+        name="SignUp"
+        component = {SignUp}
+        options = {{
+          header:()=>(<AuthBar
+            title={'Register'}
+            titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf:"center" }}
+            headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
+            
+          />)
+           
+
+        }}
+        />
         <Stack.Screen
         name="Login"
          component ={Login}
@@ -36,7 +52,7 @@ const Navigation = () => {
             title={'Login'}
             titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf:"center" }}
             headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
-            back
+            
           />)
 
          }}

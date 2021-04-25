@@ -12,7 +12,6 @@ import { Subheading, TextInput } from 'react-native-paper';
 import { theme } from "../../theme";
 import ReusableButton from '../../components/authButton';
 import {numberError} from "../../helpers";
-import PhoneInput from 'react-native-phone-number-input';
 import PhoneInputComponent from "../../components/PhoneInput/PhoneInput"
 
 
@@ -81,12 +80,12 @@ const Login = ({
         }}
         numberError={numberError(value)}
       
-        label={`PhoneNumber`}
+        label={`Phone Number`}
         autoFocus={false}
       />
          
           <View
-            style={{ padding: 10, top: 20, width: '100%', alignSelf: 'center' }}
+            style={{ padding: 10, top: 20, width: '100%', alignSelf: 'center' , marginTop:-20}}
           >
             <ReusableButton
               title={'login'}
