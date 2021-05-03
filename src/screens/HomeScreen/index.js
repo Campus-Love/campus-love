@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -7,15 +7,29 @@ import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme";
 import Home from "./Home";
 import {Avatar} from "react-native-paper";
+import { useSelector, useDispatch } from 'react-redux';
+import {increment, decrement, incrementByAmount} from "../../redux/counter"
 
 
 //create tabs
 const Tab  = createBottomTabNavigator()
 
 //Default tab
-const DefaultTab = ()=>(<View></View>)
+const DefaultTab = ()=>{
+  const {value} = useSelector(({counter})=>counter)
+
+  const dispatch = useDispatch()
+  return (
+    <View>
+     <Text>{value}</Text>
+</View>
+  )
+
+}
+
 
 const LandingScreen = ({navigation}) => {
+
     return (
         <Tab.Navigator
       initialRouteName="Home"

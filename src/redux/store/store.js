@@ -1,16 +1,25 @@
-import {createStore, applyMiddleware} from "redux";
-import { composeWithDevTools} from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import rootReducer from "../reducers/rootReducer"
-// initia state store reducers, composer enhancers
+import { configureStore } from '@reduxjs/toolkit';
+import counter from '../counter';
 
-const initialstate = {name:"Nicolas"}
-
-const middleWare = [...thunk]
-const reducers = {name:"nicolas"}
-const store = createStore(
-    initialstate,
-    rootReducer,
-     composeWithDevTools(applyMiddleware(...middleWare))
-     );
-export default store
+const preloadedState = {
+    todos: [
+      {
+        text: 'Eat food',
+        completed: true,
+      },
+      {
+        text: 'Exercise',
+        completed: false,
+      },
+    ],
+    visibilityFilter: 'SHOW_COMPLETED',
+  }
+  const reducer = {
+    counter:counter
+}
+  
+export default configureStore({
+  reducer,
+    devTools: process.env.NODE_ENV !== 'production',
+    //preloadedState
+})
