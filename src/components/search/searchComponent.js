@@ -3,6 +3,7 @@ import { Searchbar } from 'react-native-paper';
 import {Text, View} from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { returnBackWithData, searchDates } from "../../redux/dataSlice/dataSlice";
+import { theme } from "../../theme";
 
 
 const SearchComponent = ({searchStyles, icon, iconPressed})=>{
@@ -34,6 +35,7 @@ const SearchComponent = ({searchStyles, icon, iconPressed})=>{
       value={searchQuery}
       icon = {icon}
       onIconPress = {iconPressed}
+      iconColor = {theme.colors.primary}
     
     />
       </View>

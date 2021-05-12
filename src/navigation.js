@@ -58,7 +58,7 @@ const Navigation = () => {
             header:({navigation})=>(
             <SearchComponent
             searchStyles={{  
-              elevation: 0,
+              elevation: 10,
               height:120,
              }}
 
