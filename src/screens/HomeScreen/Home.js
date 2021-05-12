@@ -3,13 +3,16 @@ import {View, Text, SafeAreaView, Image, StyleSheet} from "react-native"
 import CampuserData from "../../components/FlatList";
 import {useDispatch} from "react-redux";
 import { returnBackWithData } from "../../redux/dataSlice/dataSlice";
+import { useIsFocused } from '@react-navigation/native';
+
 
 
 const Home = ({navigation})=>{
+    const isFocused = useIsFocused();
     const dispatch = useDispatch()
     useEffect(()=>{
      dispatch(returnBackWithData())
-    },[])
+    },[isFocused])
     
     return (
         <View style = {styles.homeContainer}>
