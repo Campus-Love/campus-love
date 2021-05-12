@@ -9,8 +9,6 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import Photos from './screens/Photos/photos';
 import AuthScreen from "./screens/AuthScreens/Auth";
 import SearchScreen from "./screens/SearchScreen/Search";
-import {theme} from "./theme"
-import Searching from './components/search/searchbar';
 import SearchComponent from './components/search/searchComponent';
 import {useDispatch} from "react-redux"
 import {returnBackWithData} from "./redux/dataSlice/dataSlice"

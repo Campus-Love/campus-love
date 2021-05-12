@@ -1,7 +1,7 @@
 const campusers = [
     {
         id:'8',
-        name:"Bestie",
+        name:"Bestie Suzie",
         gender:"female",
         location:"Kikumi kikumi",
         age:"20 years",
@@ -55,7 +55,7 @@ const campusers = [
     },
     {
         id:'5', 
-       name:"James",
+       name:"James Katende Nicolas",
        gender:"male",
        location:"wandegeya",
        age:"20 years",

@@ -21,7 +21,9 @@ const CampuserData = ()=>{
             source = {{uri:`${item.image}`}}
             />
             <View>
-                <Text style = {styles.nameStyle}>{`Name ${'     '} ${item.name}`}</Text>
+                <Text style = {styles.nameStyle}>{`Name ${'     '} ${item.name.length>10?
+                   ((item.name).substring(0, 8) + '...')
+                    :item.name}`}</Text>
                 <Text>{`Gender ${'    '} ${item.gender}`}</Text>
                 <Text>{`Location ${' ' } ${item.location}`}</Text>
                 <Text>{`Age ${'          '} ${item.age}`}</Text>
