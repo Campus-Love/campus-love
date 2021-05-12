@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
+import authSlice from '../authSlice/authSlice';
 import counter from '../counter';
+import  dataSlice  from '../dataSlice/dataSlice';
 
 const preloadedState = {
     todos: [
@@ -14,8 +16,11 @@ const preloadedState = {
     ],
     visibilityFilter: 'SHOW_COMPLETED',
   }
+  //all reducers
   const reducer = {
-    counter:counter
+    counter:counter,
+    users:dataSlice,
+    auth:authSlice
 }
   
 export default configureStore({

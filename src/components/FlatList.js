@@ -3,9 +3,15 @@ import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet , SafeAreaView,
 import campusers from "../Constants/fakedata";
 import ButtonComponent from "./Button";
 import {theme} from "../theme";
+import {useSelector} from "react-redux";
+import {profileData} from "../Constants/profiledata";
 
 
 const CampuserData = ()=>{
+    const {profileInfo} = useSelector(({auth})=>auth)
+    console.log(JSON.stringify(profileInfo[0].id))
+    const {data} =  useSelector(state=>state.users)
+
 
     const Item = ({item})=>(
         <SafeAreaView style = {styles.containerCardStyle}>
@@ -59,9 +65,9 @@ const CampuserData = ()=>{
     return (
      <FlatList
     
-     data = {campusers}
+     data = {data}
      renderItem = {renderItem}
-     keyExtractor = {(campuser)=>campuser.id}
+     keyExtractor = {(data)=>data.id}
 
      
      />

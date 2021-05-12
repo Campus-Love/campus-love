@@ -1,9 +1,10 @@
-import React from "react"
+import React ,{useLayoutEffect}from "react"
 import {View, Text, SafeAreaView, Image, StyleSheet} from "react-native"
 import CampuserData from "../../components/FlatList";
 
 
-const Home = ()=>{
+const Home = ({navigation})=>{
+    
     return (
         <View style = {styles.homeContainer}>
                     <Image
