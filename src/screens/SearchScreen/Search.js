@@ -6,7 +6,7 @@ import CampuserData from "../../components/FlatList"
 
 const Search =()=>{
     return(
-        <View style = {styles.homeContainer}>
+        <View style = {styles.searchContainer}>
         <Image
         style = {StyleSheet.absoluteFillObject}
        source  = {{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}}
