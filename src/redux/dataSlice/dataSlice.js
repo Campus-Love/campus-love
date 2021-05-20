@@ -6,17 +6,10 @@ export const dataSlice = createSlice({
   initialState: {
     value:0,
     data:[...campusers],
-    searchableData:campusers
+    searchableData:campusers,
+    noResultsFound:false
   },
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
-    
-    },
     allUsers:({data})=>{
         
 
@@ -24,14 +17,11 @@ export const dataSlice = createSlice({
     decrement: (state) => {
       state.value -= 1
     },
-    incrementByAmount: (state, {payload}) => {
-      state.value +=payload.amount
-    },
+    
     returnBackWithData:(state)=>{
           state.data = campusers
     },
     searchDates:(state,{payload})=>{
-      console.log(`The payload is here ${payload}`)
     if(payload){
       
       const modifiedData =  state.data.filter(person=>
@@ -41,18 +31,29 @@ export const dataSlice = createSlice({
         
       );
       if(modifiedData.length)
-        state.data = modifiedData
+      {
+        state.data = modifiedData;
+        state.noResultsFound = false
+      }
+
         else
+        {
          state.data = campusers;
-
-
+         state.noResultsFound = true
+        }
     }
+    // //no results found
+    // if(modifiedData.length ===0){
+    //   state.noResultsFound 
+    // }
      else if(payload == ""){
        state.data = campusers;
+       state.noResultsFound = false
      }
     else 
     {
       state.data = campusers
+      state.noResultsFound = false
     }
     
 
@@ -61,12 +62,8 @@ export const dataSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { allUsers, decrement, incrementByAmount, searchDates, returnBackWithData } = dataSlice.actions
+export const { allUsers,  searchDates, returnBackWithData } = dataSlice.actions
 
 
-
-//create selectors
-export const selectdata = ()=>dataSlice.initialState.data ;
-export const searchableData = (state)=>state.data.searchableData; 
 
 export default dataSlice.reducer

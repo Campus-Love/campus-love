@@ -1,4 +1,4 @@
-import React from 'react'
+import React ,{useEffect, useState, useCallback}from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Button, Pressable } from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,6 +9,7 @@ import Home from "./Home";
 import {Avatar} from "react-native-paper";
 import { useSelector, useDispatch } from 'react-redux';
 import Search from '../SearchScreen/Search';
+import {useFocusKeyboard} from "../../customHooks/useFocus"
 
 
 
@@ -33,6 +34,13 @@ const Searcher = ()=>{
 
 
 const LandingScreen = ({navigation}) => {
+
+  //focus keyboard
+  const focusKeyboard = useFocusKeyboard();
+  
+ 
+
+  //
 
     return (
         <Tab.Navigator
@@ -66,7 +74,7 @@ const LandingScreen = ({navigation}) => {
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color, size }) => (
-                    <Pressable onPress = {()=>navigation.navigate("Search")}>
+                    <Pressable onPress = {()=>{focusKeyboard&&navigation.navigate("Search")}}>
                        <EvilIcons name="search" 
                      size={30} 
                      color={color}

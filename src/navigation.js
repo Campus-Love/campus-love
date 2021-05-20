@@ -57,7 +57,7 @@ const Navigation = () => {
             <SearchComponent
             searchStyles={{  
               elevation: 10,
-              height:120,
+              height:100,
              }}
 
              icon = {'arrow-left'}
