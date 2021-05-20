@@ -2,16 +2,23 @@ import React from "react";
 import {View, Text, StyleSheet, Image} from "react-native";
 import SearchBar from "../../components/search/searchComponent";
 import {useSelector} from "react-redux";
-import CampuserData from "../../components/FlatList"
+import CampuserData from "../../components/FlatList";
+
+
 
 const Search =()=>{
+    const {noResultsFound} =  useSelector(({users})=>users)
+   
     return(
         <View style = {styles.searchContainer}>
         <Image
         style = {StyleSheet.absoluteFillObject}
-       source  = {{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}}
-/>
-<CampuserData/>
+       source  = {{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}}/>
+          {noResultsFound?
+          <View>
+              <Text>No Results found</Text>
+          </View>
+          :<CampuserData/>}
 </View>
     )
 
