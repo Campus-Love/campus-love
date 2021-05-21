@@ -1,5 +1,5 @@
-import React ,{useEffect, useState, useCallback}from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Button, Pressable } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -8,7 +8,7 @@ import {theme} from "../../theme";
 import Home from "./Home";
 import {Avatar} from "react-native-paper";
 import { useSelector, useDispatch } from 'react-redux';
-import Search from '../SearchScreen/Search';
+
 import {useFocusKeyboard} from "../../customHooks/useFocus"
 
 

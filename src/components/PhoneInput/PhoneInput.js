@@ -2,14 +2,19 @@ import React from 'react';
 import PhoneInput from 'react-native-phone-number-input';
 import { Platform, StyleSheet, Text } from 'react-native';
 import { theme } from '../../theme';
+import {useSelector, useDispatch} from 'react-redux'
+import { setNumberError } from '../../redux/authSlice/authSlice';
 
 
 const PhoneInputComponent = (props) => {
+  const dispatch = useDispatch();
+
   const {
     label = 'Phone Number',
     containerStyle = {},
     autoFocus = false,
   } = props;
+  //  props.numberError?dispatch(setNumberError(props.numberError)):null
   return (
     <>
       <Text style={phoneStyle.label}>{label}</Text>
@@ -25,8 +30,9 @@ const PhoneInputComponent = (props) => {
           ...phoneStyle.textContainerStyle,
           ...containerStyle,
         }}
+      
         onChangeText={props.handleChangeValue}
-        placeholder={' '}
+        placeholder = "Enter 9 digits"
         keyboardType={Platform.OS === 'android' ? 'number-pad' : 'default'}
       />
       <Text style={phoneStyle.phoneError}>{props.numberError}</Text>

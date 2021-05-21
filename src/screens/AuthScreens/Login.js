@@ -13,6 +13,8 @@ import { theme } from "../../theme";
 import ReusableButton from '../../components/authButton';
 import {numberError} from "../../helpers";
 import PhoneInputComponent from "../../components/PhoneInput/PhoneInput"
+import { useSelector, useDispatch } from 'react-redux';
+import { logIn } from '../../redux/authSlice/authSlice';
 
 
 const Login = ({
@@ -23,6 +25,12 @@ const Login = ({
   handleDisabled,
   navigation
 }) => {
+  ///check error
+  const { numberErrors} = useSelector(({auth})=>auth)
+
+  //dispatch
+  const dispatch = useDispatch();
+
   const [value, setValue] = useState('');
   const [formattedValue, setFormattedValue] = useState('');
   const phoneInput = useRef(null);
@@ -35,6 +43,21 @@ const Login = ({
   }
     )
   }
+
+    //loginUser
+    const Login = ()=>{
+      //alert(`The value is ${value} and formated value is ${formattedValue}`);
+      if(value || formattedValue){
+        dispatch(logIn())
+      }
+      else{
+        alert('Enter a valid phone number please')
+      }
+
+
+
+    }
+
   return (
     <>
       <KeyboardAvoidingView
@@ -101,7 +124,7 @@ const Login = ({
               buttonStyle={{ width: '100%', backgroundColor:theme.colors.primary }}
               handleLoader={handleLoader}
               disabled={handleDisabled}
-              onPress={()=>navigation.navigate("Home")}
+              onPress={Login}
             />
             <TouchableOpacity onPress = {moveToRegister} activeOpacity={0.4}>
               <Text

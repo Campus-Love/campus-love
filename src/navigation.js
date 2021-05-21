@@ -10,7 +10,7 @@ import Photos from './screens/Photos/photos';
 import AuthScreen from "./screens/AuthScreens/Auth";
 import SearchScreen from "./screens/SearchScreen/Search";
 import SearchComponent from './components/search/searchComponent';
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import {returnBackWithData} from "./redux/dataSlice/dataSlice"
 
 
@@ -28,21 +28,15 @@ const Checker = () => {
 
 
 const Navigation = () => {
+  const { isloggedIn} = useSelector(({auth})=>auth)
   const dispatch = useDispatch()
-  return (
+  return isloggedIn?
+  (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Auth"
+        initialRouteName="Home"
         headerMode="screen"
       >
-        <Stack.Screen
-          name="Auth"
-          component={AuthScreen}
-          options={{
-            headerShown: false
-
-          }}
-        />
         <Stack.Screen name="Home"
           component={LandingScreen}
           options={{
@@ -88,6 +82,25 @@ const Navigation = () => {
     </NavigationContainer>
 
   )
+  :
+  <NavigationContainer>
+    <Stack.Navigator
+     headerMode="screen"
+     initialRouteName="Auth"
+    >
+        <Stack.Screen
+          name="Auth"
+          component={AuthScreen}
+          options={{
+            headerShown: false
+
+          }}
+        />
+
+    </Stack.Navigator>
+
+  </NavigationContainer>
+  
 }
 
 export default Navigation;
