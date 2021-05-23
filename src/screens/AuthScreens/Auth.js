@@ -30,7 +30,8 @@ const AuthScreen = () => {
         name="Login"
         component={Login}
         options={{
-          header: () => (<AuthBar
+          header: () => 
+          (<AuthBar
             title={'Login'}
             titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf: "center" }}
             headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}

@@ -4,7 +4,10 @@ import { theme } from "../theme";
 import {View, StyleSheet, Platform} from "react-native";
 import { useSelector } from "react-redux";
 
+
 const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
+
+
 
   const { dateRequests} = useSelector(({auth})=>auth)
     const unread = 4;
@@ -37,7 +40,7 @@ const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
            color ="#fff"
              icon={'account-check-outline'}
              accessibilityLabel="TagChat"
-             onPress={() => {}}
+             onPress={() => navigation.navigate('DateDetails', {title:"Dates"})}
              
            />
     </View>

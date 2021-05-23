@@ -12,6 +12,9 @@ import SearchScreen from "./screens/SearchScreen/Search";
 import SearchComponent from './components/search/searchComponent';
 import {useDispatch, useSelector} from "react-redux"
 import {returnBackWithData} from "./redux/dataSlice/dataSlice"
+import Dates from './screens/DatesScreen/dates';
+import AuthBar from './components/AuthBar';
+import { theme } from './theme';
 
 
 
@@ -76,9 +79,19 @@ const Navigation = () => {
           options={{
             headerShown: false
           }}
-          component={Photos} />
-      </Stack.Navigator>
+          component={Photos} />  
+      <Stack.Screen name="DateDetails"
+       options={{
+        header:(props)=>(<AuthBar  {...props}
+          title={'Dates'}
+          titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf: "center" }}
+          headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
 
+        />)
+      }}
+       component={Dates}
+      />
+      </Stack.Navigator>
     </NavigationContainer>
 
   )

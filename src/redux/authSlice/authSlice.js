@@ -4,7 +4,7 @@ import {profileData} from "../../Constants/profiledata"
 const authSlice = createSlice({
     name:"auth",
     initialState:{
-        isloggedIn:false,
+        isloggedIn:true,
         phone:null,
         numberErrors:null,
         profileInfo:profileData,
@@ -29,7 +29,7 @@ const authSlice = createSlice({
         },
         deleteDateRequest:(state,{payload})=>{
            // alert(payload)
-           st,ate.dateRequests =  state.dateRequests.filter(dates=>Number(dates.id) !==  Number(payload))
+           state.dateRequests =  state.dateRequests.filter(dates=>Number(dates.id) !==  Number(payload))
         },
         setNumberError:(state, {payload})=>{
             state.numberErrors = payload

@@ -29,8 +29,8 @@ const CampuserData = () => {
                     source={{ uri: `${item.image}` }}
                 />
                 <View>
-                    <Text style={styles.nameStyle}>{`Name ${'     '} ${Platform.OS == "android" || Platform.OS == "ios" &&
-                            item.name.length > 10 ?
+                    <Text style={styles.nameStyle}>{`Name ${'     '} ${
+                            item.name.length > 10 && Platform.OS !="web"?
                             ((item.name).substring(0, 8) + '...')
                             : item.name}`}</Text>
                     <Text>{`Gender ${'    '} ${item.gender}`}</Text>
@@ -50,7 +50,7 @@ const CampuserData = () => {
                                 text='Undate' icon="send"
                                 color={`${theme.colors.primary}`}
                                 undate
-                                unDatePerson={item}
+                                
                                 onPress = {()=>dispatch(deleteDateRequest(item.id))}
 
                             />
@@ -58,7 +58,7 @@ const CampuserData = () => {
 
                             <ButtonComponent
                                 mode="contained"
-                                text='date' icon="send"
+                                text='Date' icon="send"
                                 color={`${theme.colors.primary}`}
                                 date
                                 datePerson={item}
