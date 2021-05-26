@@ -2,8 +2,14 @@ import React from "react";
 import { Appbar,Badge } from 'react-native-paper';
 import { theme } from "../theme";
 import {View, StyleSheet, Platform} from "react-native";
+import { useSelector } from "react-redux";
+
 
 const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
+
+
+
+  const { dateRequests} = useSelector(({auth})=>auth)
     const unread = 4;
     const MORE_ICON = Platform.OS === 'ios' || Platform.OS === "web" ?
      'dots-horizontal' : 'dots-vertical';
@@ -24,17 +30,17 @@ const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
            showBadge&&
            <View>
            <Badge
-             visible={unread && unread > 0}
+             visible={dateRequests && dateRequests.length>0}
              size={17}
              style={styles.badgeStyle}
            >
-             {`+${unread}`}
+             {`+${dateRequests.length}`}
            </Badge>
            <Appbar.Action
            color ="#fff"
-             icon={'account-supervisor-circle'}
+             icon={'account-check-outline'}
              accessibilityLabel="TagChat"
-             onPress={() => {}}
+             onPress={() => navigation.navigate('DateDetails', {title:"Dates"})}
              
            />
     </View>

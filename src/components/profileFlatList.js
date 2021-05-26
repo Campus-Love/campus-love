@@ -1,7 +1,7 @@
 import React from "react";
 import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet , SafeAreaView} from "react-native";
 import {theme} from "../theme";
-import {profileData} from "../Constants/profiledata"
+import {useSelector, useDispatch} from "react-redux"
 
 const Item = ({item})=>(
     <SafeAreaView style = {styles.containerStyle} >
@@ -25,12 +25,15 @@ const renderItem = ({item})=>(
 )
 
 const ProfileFlatList = ()=>{
+    //fetch the data
+    const {profileInfo} = useSelector(({auth})=>auth)
+    //console.log(profileInfo[0].)
     return (
         <FlatList
-        data = {profileData[0].recentProfileImage}
+        data = {profileInfo[0].recentProfileImage}
         numColumns = {2}
         renderItem = {renderItem}
-        keyExtractor={(profilInfo)=>profilInfo.id}
+
         />
     )
 }

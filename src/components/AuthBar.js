@@ -7,7 +7,8 @@ const AuthBar = ({
   back = false,
   headerStyles = {},
   titleStyle = {},
-  previous
+  previous,
+  SearchBar
 }) => {
   if (!title || back.length === 0) {
     throw new Error('Add required fields');
@@ -21,7 +22,9 @@ const AuthBar = ({
         {previous? (
           <Appbar.BackAction onPress={() => navigation.goBack} />
         ) : null}
-        <Appbar.Content title={title} titleStyle={titleStyle} />
+        <Appbar.Content title={title} titleStyle={titleStyle}/>
+        {SearchBar&&<Appbar.Content title={<SearchBar/>}/>}
+
       </Appbar.Header>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { EvilIcons } from '@expo/vector-icons';
@@ -7,18 +7,45 @@ import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme";
 import Home from "./Home";
 import {Avatar} from "react-native-paper";
+import { useSelector, useDispatch } from 'react-redux';
+
+import {useFocusKeyboard} from "../../customHooks/useFocus"
+
+
 
 
 //create tabs
 const Tab  = createBottomTabNavigator()
 
 //Default tab
-const DefaultTab = ()=>(<View></View>)
+const DefaultTab = ()=>{
+  const {value} = useSelector(({counter})=>counter)
+
+  const dispatch = useDispatch()
+  return (
+    <View>
+</View>
+  )
+
+}
+const Searcher = ()=>{
+  return<View></View>
+}
+
 
 const LandingScreen = ({navigation}) => {
+
+  //focus keyboard
+  const focusKeyboard = useFocusKeyboard();
+  
+ 
+
+  //
+
     return (
         <Tab.Navigator
       initialRouteName="Home"
+      
       tabBarOptions={{
         activeTintColor: `${theme.colors.primary}`,
         inactiveTintColor:`${theme.colors.placeholder}`,
@@ -34,6 +61,7 @@ const LandingScreen = ({navigation}) => {
         name="Home"
         component={Home}
         options={{
+          
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={24} />
@@ -42,11 +70,22 @@ const LandingScreen = ({navigation}) => {
       />
       <Tab.Screen
         name="Search"
-        component={DefaultTab}
+        component={Searcher}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color, size }) => (
-            <EvilIcons name="search" size={30} color={color} />
+                    <Pressable onPress = {()=>{focusKeyboard&&navigation.navigate("Search")}}>
+                       <EvilIcons name="search" 
+                     size={30} 
+                     color={color}
+
+                  
+                      />
+
+                    </Pressable>
+                     
+            
+
           ),
         
         }}
