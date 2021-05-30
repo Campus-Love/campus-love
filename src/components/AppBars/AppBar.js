@@ -1,6 +1,6 @@
 import React from "react";
 import { Appbar,Badge } from 'react-native-paper';
-import { theme } from "../theme";
+import { theme } from "../../theme";
 import {View, StyleSheet, Platform} from "react-native";
 import { useSelector } from "react-redux";
 

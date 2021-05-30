@@ -1,6 +1,6 @@
 import React ,{useEffect}from "react"
 import {View, Text, SafeAreaView, Image, StyleSheet} from "react-native"
-import CampuserData from "../../components/FlatList";
+import CampuserData from "../../components/FlatLists/FlatList";
 import {useDispatch} from "react-redux";
 import { returnBackWithData } from "../../redux/dataSlice/dataSlice";
 import { useIsFocused } from '@react-navigation/native';

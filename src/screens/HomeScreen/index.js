@@ -8,29 +8,12 @@ import {theme} from "../../theme";
 import Home from "./Home";
 import {Avatar} from "react-native-paper";
 import { useSelector, useDispatch } from 'react-redux';
-
 import {useFocusKeyboard} from "../../customHooks/useFocus"
-
-
+import Empty from '../defaultScreen/empty';
 
 
 //create tabs
 const Tab  = createBottomTabNavigator()
-
-//Default tab
-const DefaultTab = ()=>{
-  const {value} = useSelector(({counter})=>counter)
-
-  const dispatch = useDispatch()
-  return (
-    <View>
-</View>
-  )
-
-}
-const Searcher = ()=>{
-  return<View></View>
-}
 
 
 const LandingScreen = ({navigation}) => {
@@ -38,8 +21,6 @@ const LandingScreen = ({navigation}) => {
   //focus keyboard
   const focusKeyboard = useFocusKeyboard();
   
- 
-
   //
 
     return (
@@ -70,7 +51,7 @@ const LandingScreen = ({navigation}) => {
       />
       <Tab.Screen
         name="Search"
-        component={Searcher}
+        component={Empty}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color, size }) => (
@@ -92,7 +73,7 @@ const LandingScreen = ({navigation}) => {
       />
       <Tab.Screen
         name="Camera"
-        component={DefaultTab}
+        component={Empty}
         options={{
           tabBarLabel: 'Camera',
           tabBarIcon: ({ color, size }) => (
@@ -104,7 +85,7 @@ const LandingScreen = ({navigation}) => {
 
 <Tab.Screen
         name="Profile"
-        component={DefaultTab}
+        component={Empty}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (

@@ -1,26 +1,22 @@
 import React from "react";
 import { FlatList, TouchableOpacity, View, Text, Image, StyleSheet, SafeAreaView, Platform } from "react-native"
-import campusers from "../Constants/fakedata";
-import ButtonComponent from "./Button";
-import { theme } from "../theme";
+import ButtonComponent from "../Button";
+import { theme } from "../../theme";
 import { useSelector, useDispatch } from "react-redux";
-import { profileData } from "../Constants/profiledata";
-import { deleteDateRequest, sendDateRequest } from "../redux/authSlice/authSlice";
+import { deleteDateRequest, sendDateRequest } from "../../redux/authSlice/authSlice";
+import { useNavigation } from "@react-navigation/core";
 
 
 
 const CampuserData = () => {
+  const navigation =  useNavigation();
+
 
     const { profileInfo, dateRequests } = useSelector(({ auth }) => auth)
     console.log(JSON.stringify(profileInfo[0].id))
     const { data } = useSelector(state => state.users)
 
     const dispatch = useDispatch();
-
-
-
-
-
     const Item = ({ item }) => (
         <SafeAreaView style={styles.containerCardStyle}>
             <TouchableOpacity activeOpacity={0.8} style={styles.itemStyle}>
@@ -50,7 +46,6 @@ const CampuserData = () => {
                                 text='Undate' icon="send"
                                 color={`${theme.colors.primary}`}
                                 undate
-                                
                                 onPress = {()=>dispatch(deleteDateRequest(item.id))}
 
                             />
@@ -60,7 +55,6 @@ const CampuserData = () => {
                                 mode="contained"
                                 text='Date' icon="send"
                                 color={`${theme.colors.primary}`}
-                                date
                                 datePerson={item}
                                 onPress={()=>dispatch(sendDateRequest(item))}
 
@@ -73,10 +67,11 @@ const CampuserData = () => {
                     <ButtonComponent
                         mode="contained"
                         text='More' icon="more"
-                        uppercase={false}
                         color={`${theme.colors.primary}`}
-                        more
+                        onPress = {()=>navigation.navigate("Details", {
+                            person:item
 
+                        })}
                     />
                 </View>
 

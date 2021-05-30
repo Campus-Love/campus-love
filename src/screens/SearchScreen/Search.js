@@ -1,10 +1,7 @@
 import React from "react";
 import {View, Text, StyleSheet, Image} from "react-native";
-import SearchBar from "../../components/search/searchComponent";
 import {useSelector} from "react-redux";
-import CampuserData from "../../components/FlatList";
-
-
+import CampuserData from "../../components/FlatLists/FlatList";
 
 const Search =()=>{
     const {noResultsFound} =  useSelector(({users})=>users)

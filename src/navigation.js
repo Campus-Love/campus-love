@@ -1,10 +1,8 @@
-
 import React from 'react';
-import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from './screens/HomeScreen';
-import AppBar from './components/AppBar';
+import AppBar from './components/AppBars/AppBar';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import Photos from './screens/Photos/photos';
 import AuthScreen from "./screens/AuthScreens/Auth";
@@ -13,23 +11,12 @@ import SearchComponent from './components/search/searchComponent';
 import {useDispatch, useSelector} from "react-redux"
 import {returnBackWithData} from "./redux/dataSlice/dataSlice"
 import Dates from './screens/DatesScreen/dates';
-import AuthBar from './components/AuthBar';
+import AuthBar from './components/AppBars/AuthBar';
 import { theme } from './theme';
-
+import Details from './screens/DetailsScreen/Details';
 
 
 const Stack = createStackNavigator();
-
-const Checker = () => {
-  return (
-    <View><Text>search me</Text></View>
-  )
-}
-
-
-
-
-
 const Navigation = () => {
   const { isloggedIn} = useSelector(({auth})=>auth)
   const dispatch = useDispatch()
@@ -90,6 +77,13 @@ const Navigation = () => {
         />)
       }}
        component={Dates}
+      />
+      <Stack.Screen name="Details"
+       component={Details}
+       options={{
+        header: (props) => (<AppBar {...props} title="Details" />)
+      }}
+       
       />
       </Stack.Navigator>
     </NavigationContainer>

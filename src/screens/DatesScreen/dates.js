@@ -1,11 +1,9 @@
 import React from "react";
 import DateRequests from "./datesRequests";
-import AuthBar from "../../components/AuthBar";
-import ReceivedDates from "./receivedDates";
-import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { theme } from "../../theme";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 //create tabs
@@ -32,7 +30,7 @@ const Dates = () => {
           
           tabBarLabel: 'Dates',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={24} />
+            <MaterialIcons name="present-to-all" size={24} color={color} />
           ),
         }}
       />
@@ -43,7 +41,7 @@ const Dates = () => {
           
           tabBarLabel: 'Received',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={24} />
+            <MaterialCommunityIcons name="call-received" color={color} size={24} />
           ),
         }}
       />

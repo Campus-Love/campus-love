@@ -1,6 +1,6 @@
 import React from "react";
 import {FlatList, TouchableOpacity, View, Text,Image, StyleSheet , SafeAreaView} from "react-native";
-import {theme} from "../theme";
+import {theme} from "../../theme";
 import {useSelector, useDispatch} from "react-redux"
 
 const Item = ({item})=>(

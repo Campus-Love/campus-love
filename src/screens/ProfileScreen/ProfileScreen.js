@@ -1,10 +1,10 @@
-import React , {useEffect, useState}from "react";
-import {View, Image, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, TouchableHighlight} from "react-native" ;
+import React , { useState}from "react";
+import {View, Image,  TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, TouchableHighlight} from "react-native" ;
 import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme";
 import {profileData} from "../../Constants/profiledata";
 import {Headline, Divider, Text, Avatar} from "react-native-paper"
-import ProfileFlatList from "../../components/profileFlatList";
+import ProfileFlatList from "../../components/FlatLists/profileFlatList";
 
 const ProfileScreen = ({navigation})=>{
     const [modalVisible, setModalVisible] = useState(false);

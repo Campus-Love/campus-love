@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from "./Login";
 import RegisterWithPhoneNumber from "./RegisterWithPhoneNumber";
-import AuthBar from "../../components/AuthBar"
+import AuthBar from "../../components/AppBars/AuthBar"
 import { theme } from "../../theme"
 const Stack = createStackNavigator();
 const AuthScreen = () => {

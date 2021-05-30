@@ -1,9 +1,8 @@
 import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TakePicture from "../../components/camera";
 import PickImage from "../../components/imagepicker";
-import AppBar from "../../components/AppBar"
+import AppBar from "../../components/AppBars/AppBar"
 const Stack = createStackNavigator();
 const Photos = ()=>{
     
