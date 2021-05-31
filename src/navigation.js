@@ -50,7 +50,8 @@ const Navigation = () => {
                return navigation.navigate("Home")
               }}
 
-            />)
+            />),
+            headerTransparent: true
            
           }}
         />
