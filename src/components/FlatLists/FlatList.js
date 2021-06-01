@@ -1,14 +1,29 @@
-import React from "react";
+import React,{useState} from "react";
 import { FlatList, TouchableOpacity, View, Text, Image, StyleSheet, SafeAreaView, Platform } from "react-native"
 import ButtonComponent from "../Button";
 import { theme } from "../../theme";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteDateRequest, sendDateRequest } from "../../redux/authSlice/authSlice";
 import { useNavigation } from "@react-navigation/core";
+import { Modal , ActivityIndicator} from "react-native";
+import ImageViewer from "react-native-image-zoom-viewer";
+
+import { Pressable } from "react-native";
 
 
 
 const CampuserData = () => {
+
+    //modal
+    const [showModal, setShowModal] = useState(false);
+    //sliderImages
+    const [gallery, setGallery] = useState([1])
+    const sliderImages = gallery.map((i) => {
+        return { url: `https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612` };
+    });
+
+
+    //modal
   const navigation =  useNavigation();
 
 
@@ -19,11 +34,21 @@ const CampuserData = () => {
     const dispatch = useDispatch();
     const Item = ({ item }) => (
         <SafeAreaView style={styles.containerCardStyle}>
-            <TouchableOpacity activeOpacity={0.8} style={styles.itemStyle}>
-                <Image
+            <TouchableOpacity activeOpacity={0.8}
+             style={styles.itemStyle}
+
+            >  
+              <Pressable
+              
+              onPress ={()=>setShowModal(true)}
+              >
+              <Image
                     style={styles.imageStyle}
                     source={{ uri: `${item.image}` }}
                 />
+
+              </Pressable>
+                
                 <View>
                     <Text style={styles.nameStyle}>{`Name ${'     '} ${
                             item.name.length > 10 && Platform.OS !="web"?
@@ -34,6 +59,27 @@ const CampuserData = () => {
                     <Text>{`Age ${'          '} ${item.age}`}</Text>
                     <Text>{`Hobby ${"       "}${item.hobby}`}</Text>
                 </View>
+                {/*modal area */}
+                <Modal visible={showModal} 
+                transparent={false}
+                animationType="slide"
+                onShow ={() => <ActivityIndicator color="red" />}
+                >
+            <ImageViewer
+                renderHeader={()=><View><Text>left</Text></View>}
+                imageUrls={sliderImages}
+                enableImageZoom={true}
+                enableSwipeDown={true}
+                onSwipeDown={() => {
+                    setShowModal(false);
+                }}
+                onClick ={()=>setShowModal(false)}
+                renderFooter={()=><View><Text>Nicolas</Text></View>}
+
+                loadingRender={() => <ActivityIndicator color="white" />}
+                
+            />
+        </Modal>
 
 
             </TouchableOpacity>
