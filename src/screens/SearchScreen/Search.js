@@ -12,15 +12,36 @@ const Search =()=>{
         style = {StyleSheet.absoluteFillObject}
        source  = {{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}}/>
           {noResultsFound?
-          <View>
-              <Text>No Results found</Text>
+           <View style={styles.containerResults}>
+           <Text style={styles.paragraph} >No results found</Text>
+         </View>
+
+          :
+          <View style={styles.flatList}>
+            <CampuserData/>
+
           </View>
-          :<CampuserData/>}
+          
+          }
 </View>
     )
 
 }
 const styles = StyleSheet.create({
-    searchContainer:{flex:1,backgroundColor:"#fff"}
+    searchContainer:{flex:1,backgroundColor:"#fff"},
+    paragraph: {
+        margin: 24,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
+      },
+      containerResults:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop:100
+      },
+      flatList:{
+        marginTop:100
+      }
 })
 export default Search
