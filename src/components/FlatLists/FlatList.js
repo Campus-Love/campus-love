@@ -74,7 +74,7 @@ const CampuserData = () => {
                     setShowModal(false);
                 }}
                 onClick ={()=>setShowModal(false)}
-                renderFooter={()=><View><Text>Nicolas</Text></View>}
+                renderFooter={()=><View><Text></Text></View>}
 
                 loadingRender={() => <ActivityIndicator color="white" />}
                 
