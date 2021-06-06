@@ -24,7 +24,7 @@ const AppBar = ({navigation , previous, title, showBadge,elevate})=>{
          }} >
      {previous ? 
 
-      <Appbar.BackAction onPress={navigation.goBack} /> 
+      <Appbar.BackAction onPress={navigation.goBack} color={theme.colors.primary}/> 
      : null}
      
         <Appbar.Content 

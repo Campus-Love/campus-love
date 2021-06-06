@@ -7,12 +7,19 @@ export const dataSlice = createSlice({
     value:0,
     data:[...campusers],
     searchableData:campusers,
-    noResultsFound:false
+    noResultsFound:false,
+    openModal:false
   },
   reducers: {
     allUsers:({data})=>{
         
 
+    },
+    showModal:(state)=>{
+      state.openModal = true
+    },
+    closeModal:(state)=>{
+      state.openModal = false
     },
     decrement: (state) => {
       state.value -= 1
@@ -62,7 +69,7 @@ export const dataSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { allUsers,  searchDates, returnBackWithData } = dataSlice.actions
+export const { allUsers,  searchDates, returnBackWithData, showModal ,closeModal} = dataSlice.actions
 
 
 
