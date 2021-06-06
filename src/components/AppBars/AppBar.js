@@ -5,7 +5,7 @@ import {View, StyleSheet, Platform} from "react-native";
 import { useSelector } from "react-redux";
 
 
-const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
+const AppBar = ({navigation , previous, title, showBadge,elevate})=>{
 
 
 
@@ -16,7 +16,12 @@ const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
     return (
         <Appbar.Header
          dark = {true}
-         style = {styles.appHeaderStyle} >
+         style = {{
+          backgroundColor:`${theme.colors.primary}`,
+          width:"100%",
+          elevation:elevate?0:null
+
+         }} >
      {previous ? 
 
       <Appbar.BackAction onPress={navigation.goBack} /> 
@@ -83,7 +88,7 @@ const AppBar = ({navigation , previous, title, showBadge,screen, to})=>{
 const styles = StyleSheet.create({
     appHeaderStyle:{
       backgroundColor:`${theme.colors.primary}`,
-      width:"100%"
+      width:"100%",
     },
     badgeStyle:{
         position: 'absolute', 

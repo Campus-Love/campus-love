@@ -70,12 +70,10 @@ const Navigation = () => {
           component={Photos} />  
       <Stack.Screen name="DateDetails"
        options={{
-        header:(props)=>(<AuthBar  {...props}
-          title={'Dates'}
-          titleStyle={{ fontSize: 30, fontWeight: 'bold', alignSelf: "center" }}
-          headerStyles={{ backgroundColor: theme.colors.primary, elevation: 0 }}
-
-        />)
+        header: (props) => (<AppBar {...props} title="Dates" showBadge elevate
+        
+          />)
+        
       }}
        component={Dates}
       />
