@@ -1,40 +1,51 @@
 import React , { useState}from "react";
-import {View, Image,  TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, TouchableHighlight} from "react-native" ;
+import {View,  TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, TouchableHighlight} from "react-native" ;
 import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme";
 import {profileData} from "../../Constants/profiledata";
-import {Headline, Divider, Text, Avatar} from "react-native-paper"
+import { Text, Avatar} from "react-native-paper"
 import ProfileFlatList from "../../components/FlatLists/profileFlatList";
+import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from "../../redux/dataSlice/dataSlice";
 
 const ProfileScreen = ({navigation})=>{
-    const [modalVisible, setModalVisible] = useState(false);
+
+    const { openModal } = useSelector(state => state.users)
+    //hide modal through dispatch
+    const dispatch = useDispatch();
 
     const showCamera = ()=>{
-       setModalVisible(!modalVisible)
+      dispatch(closeModal())
        navigation.navigate("Photos")
     }
     const pickImage = ()=>{
-      setModalVisible(!modalVisible)
+      dispatch(closeModal())
       navigation.navigate("Photos",
        {
         screen:"Gallery",
         initial:false,
         params:{gallery:"Gallery"}
       },
-
+        
 
       )
     }
+    //tweets
+    const fake = [
+      {key:1, tweet:"location"},
+
+  ]
+
     return(
-     <ScrollView style = {styles.containerStyle}>
+      <ScrollView style = {styles.containerStyle}>
              {/*modal arae */}
          {
          
-             modalVisible&& <View style={styles.centeredView}>
+             openModal&& <View style={styles.centeredView}>
              <Modal
                animationType="slide"
                transparent={true}
-               visible={modalVisible}
+               visible={openModal}
                presentationStyle = "overFullScreen"
                onRequestClose={() => {
                  Alert.alert('Modal has been closed.');
@@ -74,9 +85,7 @@ const ProfileScreen = ({navigation})=>{
                    <TouchableHighlight
                    underlayColor = "#fff"
                      style={{ ...styles.openButton, backgroundColor: 'white', width:"100%", marginTop:10 }}
-                     onPress={() => {
-                       setModalVisible(!modalVisible);
-                     }}>
+                     onPress={() =>dispatch(closeModal())}>
                      <Text style={styles.textStyle}>Cancel</Text>
                    </TouchableHighlight>
                  </View>
@@ -85,50 +94,39 @@ const ProfileScreen = ({navigation})=>{
 
            </View>
          }
-          
-         <View style={styles.containerImageStyle}>
-             <Image
-               source = {{uri:`${profileData[0].profileImage}`}}
-               style = {styles.imageStyle}
-             />
-         </View>
-         <TouchableOpacity activeOpacity = {0.4} 
-         onPress = {()=>setModalVisible(!modalVisible)}
-         style = {styles.profileCamera}>
-           <Entypo name="camera" size={24}
-            color={'#fff'}
-             style = {styles.profileCameraIcon}
-            />
-         </TouchableOpacity>
+         {/*content section */}
+         <View style={{marginLeft:30}}>
+            {
+              fake.map((item)=>
+              <View  key ={item.key} style={{ 
+                borderBottomWidth: StyleSheet.hairlineWidth,
+                marginTop:30,
+                borderBottomColor:theme.colors.primary,
+              
+              }}>
+                <View style={{flexDirection:"row"}}>
+                <Avatar.Image size ={30} 
+                    style={{marginRight:20}}
+                             source = {{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}}
+                      />
+                      <View>
+                        <Text>{item.tweet}</Text>
+                      </View>
 
-         <View style = {styles.locationDetails}>
-             <View>
-             <Headline>About {'  '} {`${profileData[0].name}`}</Headline>
-             </View>
-             <Divider/>
-             <View>
-                 <Text>Location {'  '} {`${profileData[0].location}`}</Text>
-             </View>
-             <Divider/>
-             <View>
-                 <Text>Contact{'     '} {`${profileData[0].contact}`}</Text>
-             </View>
-             <Divider/>
-             <View>
-                 <Text>Age {'     '} {`${profileData[0].age} `}</Text>
-             </View>
-             <Divider/>
-             <View>
-                 <Text>Hobby{'   '} {`${profileData[0].hobby}`}</Text>
-             </View>
-             <Divider/>
+
+                </View>
+                
+              </View>)
+            }
+
          </View>
-         <View>
-             <Text style = {{margin:5}}>Recent Profile Pictures</Text> 
-         <ProfileFlatList/>
          
-         </View>
+         
+         {/*content section */}
+
+
      </ScrollView>
+
     )
 }
 
@@ -211,6 +209,7 @@ containerImageStyle:{
     justifyContent:'space-around',
     color:theme.colors.text
   },
+ 
 
 })
 
