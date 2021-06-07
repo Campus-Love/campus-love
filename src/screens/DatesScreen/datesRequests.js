@@ -3,10 +3,12 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Animated, Image, Platform } from 'react-native';
 import { Dimensions } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import ButtonComponent from '../../components/Button';
 import Loading from '../../components/Indicators/Loading';
-import Genres from '../../components/ReusableComponents/genres';
-import Rating from '../../components/ReusableComponents/rate';
+import { deleteDateRequest } from '../../redux/authSlice/authSlice';
+import { addUsersUndated } from '../../redux/dataSlice/dataSlice';
+import { theme } from '../../theme';
 
 //my screen
 const {height, width} = Dimensions.get("window")
@@ -16,7 +18,7 @@ const EMPTY_ITEM_SIZE = (width - ITEM_SIZE) / 2;
 const BACKDROP_HEIGHT = height * 0.6;
 const SPACER_ITEM = (width-ITEM_SIZE)/2;
 
-const BackDrop = ({images, scrollX})=>{
+const BackDrop = ()=>{
     return<View style={{ height, width , position:"absolute", flex:1}}>
       <LinearGradient
           colors={['#AF052E', 'red','white']}
@@ -32,6 +34,9 @@ const BackDrop = ({images, scrollX})=>{
 
   const DateRequests = ()=>{
     const {dateRequests } = useSelector(({ auth }) => auth);
+
+    //dispatch action
+    const dispatch = useDispatch()
     
     //getImages
 
@@ -41,19 +46,31 @@ const BackDrop = ({images, scrollX})=>{
         showDates([{key:"left_space"}, ...dateRequests.map(item=>item),{key:"right_space"}])
 
 
-    },[])
+    },[dateRequests])
     
+    //adddate and undate
+    const addDataUndate = (item)=>{
+      dispatch(deleteDateRequest(item.id))
+      dispatch(addUsersUndated(item))
+
+    }
 
 
    
   //scrollX
   const scrollX = useRef(new Animated.Value(0)).current;
+
+  //render no dates screen
   
-  const genres = ['genre1','genre2']
+
   
     return dates==null?
     <Loading/>
-    :<View style={styles.container}>
+
+    :dateRequests.length==0?
+    <View><Text>No dates</Text></View>
+    :
+    <View style={styles.container}>
       <BackDrop/>
   
       <Animated.FlatList
@@ -96,15 +113,24 @@ const BackDrop = ({images, scrollX})=>{
                  borderRadius:34,
                  transform:[{translateY}]
                }}
+               key={item.id}
               >
                 <Image
                  source={{uri:item.image}}
                  style ={styles.detailsImage}
                 />
-                <Text style={{fontSize:24}}>{item.name}</Text>
-                <Rating rating={5}/>
-                <Genres genres={genres}/>
+                <Text style={{fontSize:20}}>{item.name}</Text>
+                <Text style={{fontSize:18}}>{item.location}</Text>
+                <Text style={{fontSize:16}}>{item.uni}</Text>
+                <Text style={{fontSize:14}}>{item.age}</Text>
                 <Text style={{fontSize:12}}>{item.hobby}</Text>
+                <View style={styles.viewButton}>
+                  <ButtonComponent text={`Undate`}
+                  color={theme.colors.primary}
+                  mode="contained"
+                  onPress={()=>addDataUndate(item)}
+                  />
+                </View>
   
               </Animated.View>
   
@@ -133,7 +159,14 @@ const styles = StyleSheet.create(
         borderRadius: 15,
         margin: 0,
         marginBottom: 20,
-      }
+      },
+      viewButton: { marginRight: 4, fontSize: 14 },
+  rating: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 4
+  },
   
   })
   

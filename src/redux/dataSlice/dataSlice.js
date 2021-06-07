@@ -15,16 +15,20 @@ export const dataSlice = createSlice({
         
 
     },
+    filterDatedUsers:(state, {payload})=>{
+      state.data =  state.data.filter(person=>person.id !== payload)
+    },
     showModal:(state)=>{
       state.openModal = true
     },
     closeModal:(state)=>{
       state.openModal = false
     },
-    decrement: (state) => {
-      state.value -= 1
+    addUsersUndated:(state, {payload})=>{
+      //add
+      state.data = state.data.push(payload)
+
     },
-    
     returnBackWithData:(state)=>{
           state.data = campusers
     },
@@ -49,10 +53,7 @@ export const dataSlice = createSlice({
          state.noResultsFound = true
         }
     }
-    // //no results found
-    // if(modifiedData.length ===0){
-    //   state.noResultsFound 
-    // }
+    
      else if(payload == ""){
        state.data = campusers;
        state.noResultsFound = false
@@ -69,7 +70,9 @@ export const dataSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { allUsers,  searchDates, returnBackWithData, showModal ,closeModal} = dataSlice.actions
+export const { allUsers,  searchDates,
+   returnBackWithData, showModal, filterDatedUsers, addUsersUndated
+   ,closeModal} = dataSlice.actions
 
 
 

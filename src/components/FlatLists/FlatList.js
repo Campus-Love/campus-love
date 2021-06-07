@@ -3,12 +3,12 @@ import { FlatList, TouchableOpacity, View, Text, Image, StyleSheet, SafeAreaView
 import ButtonComponent from "../Button";
 import { theme } from "../../theme";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteDateRequest, sendDateRequest } from "../../redux/authSlice/authSlice";
+import { sendDateRequest } from "../../redux/authSlice/authSlice";
 import { useNavigation } from "@react-navigation/core";
 import { Modal , ActivityIndicator} from "react-native";
 import ImageViewer from "react-native-image-zoom-viewer";
-
 import { Pressable } from "react-native";
+import { filterDatedUsers } from "../../redux/dataSlice/dataSlice";
 
 
 
@@ -30,8 +30,18 @@ const CampuserData = () => {
     const { profileInfo, dateRequests } = useSelector(({ auth }) => auth)
     console.log(JSON.stringify(profileInfo[0].id))
     const { data } = useSelector(state => state.users)
-
     const dispatch = useDispatch();
+
+    //filterdata and add date request
+    const filterSendRequest=(item)=>{
+        
+        
+         dispatch(sendDateRequest(item))
+         dispatch(filterDatedUsers(item.id))
+
+    }
+
+
     const Item = ({ item }) => (
         <SafeAreaView style={styles.containerCardStyle}>
             <TouchableOpacity activeOpacity={0.8}
@@ -85,27 +95,17 @@ const CampuserData = () => {
             </TouchableOpacity>
             <View style={styles.homeButtonStyle}>
                 <View style={styles.homeButtonSend}>
-                    {
-                        dateRequests.find(({ id }) => id === item.id) ?
-                            <ButtonComponent
-                                mode="contained"
-                                text='Undate' icon="send"
-                                color={`${theme.colors.primary}`}
-                                undate
-                                onPress = {()=>dispatch(deleteDateRequest(item.id))}
-
-                            />
-                            :
+                    
 
                             <ButtonComponent
                                 mode="contained"
                                 text='Date' icon="send"
                                 color={`${theme.colors.primary}`}
                                 datePerson={item}
-                                onPress={()=>dispatch(sendDateRequest(item))}
+                                onPress={()=>filterSendRequest(item)}
 
                             />
-                    }
+                    
 
 
                 </View>

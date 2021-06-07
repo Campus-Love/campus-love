@@ -9,7 +9,7 @@ import Home from "./Home";
 import {Avatar} from "react-native-paper";
 import {useFocusKeyboard} from "../../customHooks/useFocus"
 import Loading from "../../components/Indicators/Loading";
-import Empty  from "../../components/ReusableComponents/"
+import Empty from '../defaultScreen/empty';
 
 
 
@@ -88,18 +88,21 @@ const LandingScreen = ({navigation}) => {
 
 <Tab.Screen
         name="Profile"
-        component={Empty}
+        component={Loading}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
-            <TouchableOpacity activeOpacity = {0.2}
-            onPress = {()=>navigation.navigate("Profile")}
+            <Pressable
+            onPress = {
+              ()=>navigation.navigate("Profile")
+              /*()=>alert('pressed')*/
+          }
             >
                  <Avatar.Image size={24} source={{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}} 
              color = {color}
              size = {24}
            />
-            </TouchableOpacity>
+            </Pressable>
            
           ),
         

@@ -11,8 +11,6 @@ import SearchComponent from './components/search/searchComponent';
 import {useDispatch, useSelector} from "react-redux"
 import {returnBackWithData} from "./redux/dataSlice/dataSlice"
 import Dates from './screens/DatesScreen/dates';
-import AuthBar from './components/AppBars/AuthBar';
-import { theme } from './theme';
 import Details from './screens/DetailsScreen/Details';
 import Background from './components/BackgroundImage/Background';
 

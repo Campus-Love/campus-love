@@ -32,11 +32,8 @@ const ProfileScreen = ({navigation})=>{
     }
     //tweets
     const fake = [
-      {key:1, tweet:"nicolas"},
-      {key:1, tweet:"images"},
-      {key:1, tweet:"nicolas"},
-      {key:1, tweet:"nicolas"},
-      {key:1, tweet:"nicolas"}
+      {key:1, tweet:"location"},
+
   ]
 
     return(
@@ -101,7 +98,7 @@ const ProfileScreen = ({navigation})=>{
          <View style={{marginLeft:30}}>
             {
               fake.map((item)=>
-              <View style={{ 
+              <View  key ={item.key} style={{ 
                 borderBottomWidth: StyleSheet.hairlineWidth,
                 marginTop:30,
                 borderBottomColor:theme.colors.primary,

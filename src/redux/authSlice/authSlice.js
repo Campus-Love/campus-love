@@ -25,6 +25,8 @@ const authSlice = createSlice({
 
         },
         sendDateRequest:(state,{payload})=>{
+            //remove the element
+            
             state.dateRequests.push(payload)
         },
         deleteDateRequest:(state,{payload})=>{
