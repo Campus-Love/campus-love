@@ -1,26 +1,25 @@
-import React , { useState, useRef}from "react";
-import {View, Image,  TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, TouchableHighlight, Animated} from "react-native" ;
+import React , { useState}from "react";
+import {View,  TouchableOpacity, StyleSheet, ScrollView, Alert, Modal, TouchableHighlight} from "react-native" ;
 import { Entypo } from '@expo/vector-icons';
 import {theme} from "../../theme";
 import {profileData} from "../../Constants/profiledata";
-import {Headline, Divider, Text, Avatar} from "react-native-paper"
+import { Text, Avatar} from "react-native-paper"
 import ProfileFlatList from "../../components/FlatLists/profileFlatList";
 import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../../redux/dataSlice/dataSlice";
 
 const ProfileScreen = ({navigation})=>{
-    const [modalVisible, setModalVisible] = useState(false);
 
     const { openModal } = useSelector(state => state.users)
     //hide modal through dispatch
     const dispatch = useDispatch();
 
     const showCamera = ()=>{
-       setModalVisible(!modalVisible)
+      dispatch(closeModal())
        navigation.navigate("Photos")
     }
     const pickImage = ()=>{
-      setModalVisible(!modalVisible)
+      dispatch(closeModal())
       navigation.navigate("Photos",
        {
         screen:"Gallery",

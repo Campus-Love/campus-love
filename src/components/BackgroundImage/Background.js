@@ -34,10 +34,22 @@ const Background = ({previous}) => {
        }}>
 {previous ? 
 
-<Appbar.BackAction onPress={navigation.goBack}  color={theme.colors.primary}/> 
+<Appbar.BackAction onPress={navigation.navigate("Home")} 
+ style ={{
+  position: 'absolute',
+  top:10,
+  left:10
+}}
+ color={theme.colors.primary}/> 
 : null}
 
-          <Appbar.Content title="Profile"  color={theme.colors.primary} />
+          <Appbar.Content title="Profile" 
+           style ={{
+            position: 'absolute',
+            top:10,
+            left:20
+          }}
+           color={theme.colors.primary} />
           
           <Avatar.Image
            source ={{uri:"https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612"}}
@@ -58,7 +70,13 @@ const Background = ({previous}) => {
             }}
             size={35}
            />
-          <Appbar.Action icon="camera"  color={theme.colors.primary} 
+          <Appbar.Action icon="camera" 
+            style={{
+              position: 'absolute',
+              top:20,
+              left: AVATAR_WIDTH+20
+            }}
+           color={theme.colors.primary} 
           onPress ={()=>dispatch(showModal())}
           />
         </Appbar.Header>
