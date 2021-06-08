@@ -15,18 +15,13 @@ const authSlice = createSlice({
     reducers:{
         logIn:(state)=>{
             state.isloggedIn = true;
-            
-
-            
         },
         logOut:(state)=>{
             state.isloggedIn = false;
             state.phone = null;
-
         },
         sendDateRequest:(state,{payload})=>{
             //remove the element
-            
             state.dateRequests.push(payload)
         },
         deleteDateRequest:(state,{payload})=>{

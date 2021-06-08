@@ -1,30 +1,28 @@
-import React,{useState} from "react";
-import { FlatList, TouchableOpacity, View, Text, Image, StyleSheet, SafeAreaView, Platform } from "react-native"
+import React, { useState, useRef } from "react";
+import { FlatList, TouchableOpacity, View, Text, Image, Animated,Dimensions, StyleSheet, SafeAreaView, Platform, Pressable, Modal } from "react-native"
 import ButtonComponent from "../Button";
 import { theme } from "../../theme";
 import { useSelector, useDispatch } from "react-redux";
 import { sendDateRequest } from "../../redux/authSlice/authSlice";
 import { useNavigation } from "@react-navigation/core";
-import { Modal , ActivityIndicator} from "react-native";
-import ImageViewer from "react-native-image-zoom-viewer";
-import { Pressable } from "react-native";
 import { filterDatedUsers } from "../../redux/dataSlice/dataSlice";
+import { AntDesign } from '@expo/vector-icons';
+import { PinchGestureHandler, PanGestureHandler } from "react-native-gesture-handler";
+
+const {height, width} =  Dimensions.get('screen')
 
 
 
 const CampuserData = () => {
 
+    //create a reference
+    const scale = useRef(new Animated.Value(1)).current;
     //modal
     const [showModal, setShowModal] = useState(false);
-    //sliderImages
-    const [gallery, setGallery] = useState([1])
-    const sliderImages = gallery.map((i) => {
-        return { url: `https://media.gettyimages.com/photos/hes-one-of-the-popular-guys-picture-id500721035?s=612x612` };
-    });
+    //handle gesture
+    const handlePinch = Animated.event([{ nativeEvent: { scale } }])
 
-
-    //modal
-  const navigation =  useNavigation();
+    const navigation = useNavigation();
 
 
     const { profileInfo, dateRequests } = useSelector(({ auth }) => auth)
@@ -33,35 +31,67 @@ const CampuserData = () => {
     const dispatch = useDispatch();
 
     //filterdata and add date request
-    const filterSendRequest=(item)=>{
-        
-        
-         dispatch(sendDateRequest(item))
-         dispatch(filterDatedUsers(item.id))
+    const filterSendRequest = (item) => {
+        dispatch(sendDateRequest(item))
+        dispatch(filterDatedUsers(item.id))
+    }
+    //setimageurl
+    const [imageURL, setImageUrl] =  useState(null)
+    const getImageUrl = (imageUrl)=>{
+        //alert(imageUrl);
+          setImageUrl(imageUrl)
+        setShowModal(true);
 
+    }
+    //removeModal
+    const removeModal = ()=>{
+        setShowModal(false)
+        setImageUrl(null)
     }
 
 
     const Item = ({ item }) => (
         <SafeAreaView style={styles.containerCardStyle}>
             <TouchableOpacity activeOpacity={0.8}
-             style={styles.itemStyle}
+                style={styles.itemStyle}
 
-            >  
-              <Pressable
-              
-              onPress ={()=>setShowModal(true)}
-              >
-              <Image
-                    style={styles.imageStyle}
-                    source={{ uri: `${item.image}` }}
-                />
+            >
+                  <Pressable onPress={()=>getImageUrl(item.image)}>
+                  <Image
+                        style={styles.imageStyle}
+                        source={{ uri: `${item.image}` }}
+                    />
+                  </Pressable>
+                  {/*modal to show a big image */}
+                  {
+                      showModal&&
+                      <View style={styles.modalStyle}>
+                  <Modal visible={imageURL&&showModal}>
+                      <View style={styles.modalStyleInside}>
+                      <Pressable onPressOut={removeModal}>
+                      <Image
+                        style={styles.modalImage}
+                        source={{ uri: `${imageURL}` }}
+                    />
+                          
+                      </Pressable>
 
-              </Pressable>
-                
+
+                      </View>
+                      
+                  </Modal>
+
+                  </View>
+                  
+                  }
+                  
+                  {/*modal to show a big image */}
+
+                    
+
+        
                 <View>
-                    <Text style={styles.nameStyle}>{`Name ${'     '} ${
-                            item.name.length > 10 && Platform.OS !="web"?
+                    <Text style={styles.nameStyle}>{`Name ${'     '} ${item.name.length > 10 && Platform.OS != "web" ?
                             ((item.name).substring(0, 8) + '...')
                             : item.name}`}</Text>
                     <Text>{`Gender ${'    '} ${item.gender}`}</Text>
@@ -69,43 +99,23 @@ const CampuserData = () => {
                     <Text>{`Age ${'          '} ${item.age}`}</Text>
                     <Text>{`Hobby ${"       "}${item.hobby}`}</Text>
                 </View>
-                {/*modal area */}
-                <Modal visible={showModal} 
-                transparent={false}
-                animationType="slide"
-                onShow ={() => <ActivityIndicator color="red" />}
-                >
-            <ImageViewer
-                renderHeader={()=><View><Text>left</Text></View>}
-                imageUrls={sliderImages}
-                enableImageZoom={true}
-                enableSwipeDown={true}
-                onSwipeDown={() => {
-                    setShowModal(false);
-                }}
-                onClick ={()=>setShowModal(false)}
-                renderFooter={()=><View><Text></Text></View>}
 
-                loadingRender={() => <ActivityIndicator color="white" />}
-                
-            />
-        </Modal>
 
 
             </TouchableOpacity>
             <View style={styles.homeButtonStyle}>
                 <View style={styles.homeButtonSend}>
-                    
 
-                            <ButtonComponent
-                                mode="contained"
-                                text='Date' icon="send"
-                                color={`${theme.colors.primary}`}
-                                datePerson={item}
-                                onPress={()=>filterSendRequest(item)}
 
-                            />
-                    
+                    <ButtonComponent
+                        mode="contained"
+                        text='Date' icon="send"
+                        color={`${theme.colors.primary}`}
+                        datePerson={item}
+                        onPress={() => filterSendRequest(item)}
+
+                    />
+
 
 
                 </View>
@@ -114,8 +124,8 @@ const CampuserData = () => {
                         mode="contained"
                         text='More' icon="more"
                         color={`${theme.colors.primary}`}
-                        onPress = {()=>navigation.navigate("Details", {
-                            person:item
+                        onPress={() => navigation.navigate("Details", {
+                            person: item
 
                         })}
                     />
@@ -173,6 +183,16 @@ const styles = StyleSheet.create({
         marginRight: 10,
         borderRadius: 50
     },
+    modalImage:{
+        width,
+        height:height/2,
+        zIndex:1,
+        overflow: "hidden",
+        justifyContent:"center",
+        marginTop:height/5,
+        marginBottom:height/11
+
+    },
     nameStyle: {
         fontSize: 15,
         fontWeight: "700",
@@ -189,6 +209,20 @@ const styles = StyleSheet.create({
     homeButtonMore: {
         width: "50%",
         flex: 0.5
+    },
+    modalStyle:{
+        width,
+        backgroundColor:theme.colors.primary
+    },
+    closeModal:{
+      position: "absolute",
+      top:10,
+      right: 20
+    },
+    modalStyleInside:{
+        width,
+        height,
+        backgroundColor:theme.colors.onBackground
     }
 })
 
