@@ -13,6 +13,7 @@ import {returnBackWithData} from "./redux/dataSlice/dataSlice"
 import Dates from './screens/DatesScreen/dates';
 import Details from './screens/DetailsScreen/Details';
 import Background from './components/BackgroundImage/Background';
+import RecentImage from './screens/Images/RecentImage';
 
 
 const Stack = createStackNavigator();
@@ -79,9 +80,17 @@ const Navigation = () => {
       <Stack.Screen name="Details"
        component={Details}
        options={{
-        header: (props) => (<AppBar {...props} title="Details" />)
+        header: (props) => (<AppBar {...props} title="Details" showBadge />)
       }}
        
+      />
+      <Stack.Screen name="RecentImages"
+       component={RecentImage}
+       options={{
+         header: (props) => (<AppBar {...props} title="Recent Pictures"  elevate
+        
+         />)
+       }}
       />
       </Stack.Navigator>
     </NavigationContainer>

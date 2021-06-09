@@ -75,12 +75,12 @@ const LandingScreen = ({navigation}) => {
         }}
       />
       <Tab.Screen
-        name="Camera"
+        name="chat"
         component={Loading}
         options={{
-          tabBarLabel: 'Camera',
+          tabBarLabel: 'chat',
           tabBarIcon: ({ color, size }) => (
-            <Entypo name="camera" size={24} color={color} />
+            <Entypo name="chat" size={24} color={color} />
           ),
         
         }}

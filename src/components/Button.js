@@ -5,17 +5,19 @@ import { deleteDateRequest, sendDateRequest } from "../redux/authSlice/authSlice
 
 
 
-const ButtonComponent = ({icon, color, text, mode, onPress})=>{
+const ButtonComponent = ({icon, color, text, mode, onPress, fullWidth, disabled})=>{
     return (
         <Button
           contentStyle = {{
-              flexDirection:"row-reverse"
+              flexDirection:"row-reverse",
+              width:fullWidth&&"100%"
           }}
          icon = {icon}
          mode = {mode}
          color = {color}
          uppercase={false}
          onPress = {onPress}
+         disabled={disabled}
         >{text}</Button>
     )
 }

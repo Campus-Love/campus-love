@@ -16,11 +16,11 @@ const {height, width} =  Dimensions.get('screen')
 const CampuserData = () => {
 
     //create a reference
-    const scale = useRef(new Animated.Value(1)).current;
+    //const scale = useRef(new Animated.Value(1)).current;
     //modal
     const [showModal, setShowModal] = useState(false);
     //handle gesture
-    const handlePinch = Animated.event([{ nativeEvent: { scale } }])
+    //const handlePinch = Animated.event([{ nativeEvent: { scale } }])
 
     const navigation = useNavigation();
 
@@ -125,9 +125,10 @@ const CampuserData = () => {
                         text='More' icon="more"
                         color={`${theme.colors.primary}`}
                         onPress={() => navigation.navigate("Details", {
-                            person: item
+                        item
 
-                        })}
+                        }
+                        )}
                     />
                 </View>
 
