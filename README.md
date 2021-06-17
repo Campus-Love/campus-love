@@ -4,3 +4,4 @@ how to run the project using expo
 first clone the project
 run expo install
 run expo start
+expo build:android -t app-bundle
