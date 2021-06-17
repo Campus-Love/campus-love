@@ -29,6 +29,10 @@ const Home = ()=>{
 }
 
  const styles = StyleSheet.create({
-     homeContainer:{flex:1,backgroundColor:"#fff"}
+     homeContainer:{
+         flex:1,
+        backgroundColor:"#fff",
+        elevation:0
+    }
  })
 export default Home

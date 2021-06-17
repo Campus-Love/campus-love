@@ -4,7 +4,7 @@ import {profileData} from "../../Constants/profiledata"
 const authSlice = createSlice({
     name:"auth",
     initialState:{
-        isloggedIn:true,
+        isloggedIn:false,
         phone:null,
         numberErrors:null,
         profileInfo:profileData,

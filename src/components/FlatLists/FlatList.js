@@ -147,7 +147,7 @@ const CampuserData = () => {
     )
     return (
         <FlatList
-
+              
             data={data}
             renderItem={renderItem}
             keyExtractor={(data) => data.id}

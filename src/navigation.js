@@ -30,7 +30,7 @@ const Navigation = () => {
         <Stack.Screen name="Home"
           component={LandingScreen}
           options={{
-            header: (props) => (<AppBar {...props} title="CampusLove" showBadge />),
+            header: (props) => (<AppBar {...props} title="CampusLove" showBadge  elevate/>),
           }}
         />
          
